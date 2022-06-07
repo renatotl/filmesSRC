@@ -3,4 +3,4 @@ const FilmeController = require("../controllers/FilmeControllers");//acessa o co
 
 routes.get("/", FilmeController.getAll);//listar tudo que tem na rota (cadastrado no banco)
 
-module.exports = routes;//exporto ela para qualquer caminho
+module.exports = routes;//exporto ela para qualquer caminho que nesse caso é FilmeController
