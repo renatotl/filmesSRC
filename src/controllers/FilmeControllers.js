@@ -15,9 +15,9 @@ const getAll = async (req, res) => {//async, aguarda porque eu vou lá fazer a c
     };
 };
 
-//rota para pegar o ID do filme selecionado
-const getById = async (req,res) => {
-    try{
+//rota para pegar o ID do filme selecionado// async é quando ela vai lá no banco e volta
+const getById = async (req,res) => {// toda função ou vai dá certo ou vai dá errado ai usamos o TRY e CATCH
+    try{// AWAIT ela vai receber os dados que estao em Filme e procurando a chave primária requisitando o parâmetro do ID
         const filme = await Filme.findByPk(req.params.id);//encontrando o filme que foi escolhido pelo id, findByPk procurar pela chave primaria que é o id, e esse id vai chegar por parametro
         res.render("detalhes", {
             filme
@@ -54,7 +54,7 @@ const criacao  = async (req,res) =>{
 };
 
 //rota editar filme
-const editar1 = async (req,res) => {
+const editar1 = async (req,res) => {// a editar1 ve se o filme existe não valida a rota 
     const filme = await Filme.findByPk(req.params.id);
 
     if(!filme){
@@ -69,18 +69,22 @@ const editar1 = async (req,res) => {
 };
 
 //rota de edição do filme
-const editar = async (req,res) => {
+const editar = async (req,res) => {// realmente edita o filme 
     try{
+        //peguei o ID que vem do body e comparei com ID da chave primária do meu banco
         const filme = await Filme.findByPk(req.params.id);
-        const {nome, descricao, imagem } = req.body;
+        const {nome, descricao, imagem } = req.body;// desconstruindo o objeto para poder editar cada um
 
-        filme.nome = nome;
+        filme.nome = nome;// passando o novo valor
         filme.descricao = descricao;
         filme.imagem = imagem;
 
+
+
+        //salvando no banco o SAVE salva direto no banco o filme que vem do body
         const filmeEditado = await filme.save();
         // res.render("editar", {
-        //     filme: filmeEditado,
+        //     filme: filmeEditado,// pegou o filme que editei e passou o filmeEditado
         //     message:"Filme editado com sucesso!",
         // });
         res.redirect("/");
@@ -91,8 +95,8 @@ const editar = async (req,res) => {
 
 //rota deletar o filme
 const deletar = async (req,res) => {
-    try{
-        await Filme.destroy({where : { id: req.params.id}});
+    try{//o destoy é uma função // vai lá no banco e destrua i ID que vem do body
+        await Filme.destroy({where : { id: req.params.id}});// o Where aponta pro ID o req.params.id é o ID que vem do body
         message = "Filme removido com sucesso"
         res.redirect("/");
     }catch(err){//deu erro, venha nesse caminho
@@ -100,7 +104,7 @@ const deletar = async (req,res) => {
     };
 }
 
-module.exports = {//exportando todas as rotas que a gente usar qui
+module.exports = {//exportando todas as rotas que a gente usar qui po routes
     getAll,
     getById,
     criar,

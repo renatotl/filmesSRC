@@ -64,3 +64,16 @@ passo18: na rais arquivo procfile
 
 
 
+TUDO QUE FOR VALIDAÇÃO E QUANDO CHAMO A ROTA FICA EM CONTROLLERS  CONTROLA TUDO, CLICKE DE CADASTRAR, DELETAÇÃO
+-----------------------
+DATABASE é a conexão vou mandar as variáveis de ambiente que estam no ENV pro meu BANCO  pelo SEQUELIZE (ORM) ele ajuda na conexão do PG admin com o Node. No DATABASE fica todos os dados necessários para a conexão.
+---------------------------
+MODELS fica o medele de dados que iremos receber do BANCO o usuário guarda os dados no fronto e ele guarda na tabela assim o BACK entende como está vindo esses dados. Os dados são descontruídos dentro de MODELS 
+-------
+ROUTES é o caminho da minhas rotas 
+
+
+======= o index ve as informações e enia informações para o banco, verifica o frameWork que estamos usando que no caso é o EXPRESS, pega o caminho de todas as rotas e passa as rotas pro index
+O cliente clica em cadastrar o programa vai em ROUTES e ver qual é a rota cadastrar, acha a rota cadastrar exemplo create e vai lá no CONTROLLERS acha a rota create entra dentro dela e executa o que tem que executar e passa as informações pra MODELS 
+
+HIERARQUIA    INDEX pra ROTA pra CONTROLLER e depois pra MODEL
